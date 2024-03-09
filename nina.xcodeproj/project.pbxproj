@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CA275652B9D1A2E00F24674 /* Extract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA275642B9D1A2E00F24674 /* Extract.swift */; };
 		DC4870162B9D146C0009DCDC /* ninaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870152B9D146C0009DCDC /* ninaApp.swift */; };
 		DC4870182B9D146C0009DCDC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870172B9D146C0009DCDC /* ContentView.swift */; };
 		DC48701A2B9D146D0009DCDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC4870192B9D146D0009DCDC /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2CA275642B9D1A2E00F24674 /* Extract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extract.swift; sourceTree = "<group>"; };
 		DC4870122B9D146C0009DCDC /* nina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC4870152B9D146C0009DCDC /* ninaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ninaApp.swift; sourceTree = "<group>"; };
 		DC4870172B9D146C0009DCDC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +74,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2CA275612B9D18EE00F24674 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2CA275642B9D1A2E00F24674 /* Extract.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		DC4870092B9D146C0009DCDC = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +105,7 @@
 		DC4870142B9D146C0009DCDC /* nina */ = {
 			isa = PBXGroup;
 			children = (
+				2CA275612B9D18EE00F24674 /* Utils */,
 				DC4870152B9D146C0009DCDC /* ninaApp.swift */,
 				DC4870172B9D146C0009DCDC /* ContentView.swift */,
 				DC4870192B9D146D0009DCDC /* Assets.xcassets */,
@@ -261,6 +272,7 @@
 			files = (
 				DC4870182B9D146C0009DCDC /* ContentView.swift in Sources */,
 				DC4870162B9D146C0009DCDC /* ninaApp.swift in Sources */,
+				2CA275652B9D1A2E00F24674 /* Extract.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
