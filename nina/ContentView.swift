@@ -1,10 +1,17 @@
+//
+//  ContentView.swift
+//  nina
+//
+//  Created by Ishaan Arya on 09/03/24.
+//
+
+
 import SwiftUI
 
 struct ContentView: View {
     @State private var selectedFolder: URL?
     @State private var textContent: [String] = []
 
-    var body: some View {
         VStack {
             if let selectedFolder = selectedFolder {
                 Text("Selected Folder: \(selectedFolder.path)")
@@ -110,3 +117,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+    
+
