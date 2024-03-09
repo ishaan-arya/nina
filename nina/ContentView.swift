@@ -1,17 +1,10 @@
-//
-//  ContentView.swift
-//  nina
-//
-//  Created by Ishaan Arya on 09/03/24.
-//
-
-
 import SwiftUI
 
 struct ContentView: View {
     @State private var selectedFolder: URL?
     @State private var textContent: [String] = []
 
+    var body: some View {
         VStack {
             if let selectedFolder = selectedFolder {
                 Text("Selected Folder: \(selectedFolder.path)")
@@ -45,13 +38,8 @@ struct ContentView: View {
         Button("Extract Text") {
             if let selectedFolder = selectedFolder {
                 let extract = Extract()
-                print("here")
-                extract.extractTextFromFolder(selectedFolder) { content in
-                    textContent = content
-                    print("\(textContent)")
-                    // Process the extracted text content as needed
-                }
-            }
+
+                          }
         }
         .padding()
 
@@ -117,5 +105,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-    
-
