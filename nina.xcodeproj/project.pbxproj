@@ -17,6 +17,7 @@
 		DC4870342B9D146D0009DCDC /* ninaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870332B9D146D0009DCDC /* ninaUITestsLaunchTests.swift */; };
 		DC4870412B9D16040009DCDC /* customSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870402B9D16040009DCDC /* customSearchBar.swift */; };
 		DC4870432B9D21440009DCDC /* animatedSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870422B9D21440009DCDC /* animatedSearchBar.swift */; };
+		FAB0D4FD2B9D2CDA00BC7635 /* openAi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0D4FC2B9D2CDA00BC7635 /* openAi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		DC4870332B9D146D0009DCDC /* ninaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ninaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DC4870402B9D16040009DCDC /* customSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customSearchBar.swift; sourceTree = "<group>"; };
 		DC4870422B9D21440009DCDC /* animatedSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animatedSearchBar.swift; sourceTree = "<group>"; };
+		FAB0D4FC2B9D2CDA00BC7635 /* openAi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openAi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				2CA275642B9D1A2E00F24674 /* Extract.swift */,
+				FAB0D4FC2B9D2CDA00BC7635 /* openAi.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				DC4870432B9D21440009DCDC /* animatedSearchBar.swift in Sources */,
 				DC4870182B9D146C0009DCDC /* ContentView.swift in Sources */,
 				DC4870412B9D16040009DCDC /* customSearchBar.swift in Sources */,
+				FAB0D4FD2B9D2CDA00BC7635 /* openAi.swift in Sources */,
 				DC4870162B9D146C0009DCDC /* ninaApp.swift in Sources */,
 				2CA275652B9D1A2E00F24674 /* Extract.swift in Sources */,
 			);
