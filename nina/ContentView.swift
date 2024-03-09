@@ -41,7 +41,7 @@ struct DropView: NSViewRepresentable {
     @Binding var selectedFolder: URL?
     
     func makeNSView(context: Context) -> NSView {
-        let view = NSView()
+        let view = DroppableView(selectedFolder: $selectedFolder)
         view.registerForDraggedTypes([.fileURL])
         view.wantsLayer = true
         view.layer?.backgroundColor = NSColor.clear.cgColor
@@ -58,34 +58,36 @@ struct DropView: NSViewRepresentable {
                                      height: dropIndicator.bounds.height)
         nsView.addSubview(dropIndicator)
     }
+}
+
+class DroppableView: NSView {
+    @Binding var selectedFolder: URL?
     
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+    init(selectedFolder: Binding<URL?>) {
+        _selectedFolder = selectedFolder
+        super.init(frame: .zero)
+        registerForDraggedTypes([.fileURL])
     }
     
-    class Coordinator: NSObject, NSDraggingDestination {
-        let parent: DropView
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
+        return .copy
+    }
+    
+    override func draggingUpdated(_ sender: NSDraggingInfo) -> NSDragOperation {
+        return .copy
+    }
+    
+    override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
+        guard let item = sender.draggingPasteboard.pasteboardItems?.first else { return false }
+        guard let fileURL = item.string(forType: .fileURL).flatMap(URL.init(string:)) else { return false }
         
-        init(_ parent: DropView) {
-            self.parent = parent
-        }
+        selectedFolder = fileURL
         
-        func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-            guard let item = sender.draggingPasteboard.pasteboardItems?.first else { return false }
-            guard let fileURL = item.string(forType: .fileURL).flatMap(URL.init(string:)) else { return false }
-            
-            parent.selectedFolder = fileURL
-            
-            return true
-        }
-        
-        func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
-            return .copy
-        }
-        
-        func draggingUpdated(_ sender: NSDraggingInfo) -> NSDragOperation {
-            return .copy
-        }
+        return true
     }
 }
 
