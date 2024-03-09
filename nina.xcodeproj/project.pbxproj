@@ -1,0 +1,578 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DC4870162B9D146C0009DCDC /* ninaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870152B9D146C0009DCDC /* ninaApp.swift */; };
+		DC4870182B9D146C0009DCDC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870172B9D146C0009DCDC /* ContentView.swift */; };
+		DC48701A2B9D146D0009DCDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC4870192B9D146D0009DCDC /* Assets.xcassets */; };
+		DC48701D2B9D146D0009DCDC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC48701C2B9D146D0009DCDC /* Preview Assets.xcassets */; };
+		DC4870282B9D146D0009DCDC /* ninaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870272B9D146D0009DCDC /* ninaTests.swift */; };
+		DC4870322B9D146D0009DCDC /* ninaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870312B9D146D0009DCDC /* ninaUITests.swift */; };
+		DC4870342B9D146D0009DCDC /* ninaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870332B9D146D0009DCDC /* ninaUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DC4870242B9D146D0009DCDC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC48700A2B9D146C0009DCDC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC4870112B9D146C0009DCDC;
+			remoteInfo = nina;
+		};
+		DC48702E2B9D146D0009DCDC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC48700A2B9D146C0009DCDC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC4870112B9D146C0009DCDC;
+			remoteInfo = nina;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DC4870122B9D146C0009DCDC /* nina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nina.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC4870152B9D146C0009DCDC /* ninaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ninaApp.swift; sourceTree = "<group>"; };
+		DC4870172B9D146C0009DCDC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DC4870192B9D146D0009DCDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DC48701C2B9D146D0009DCDC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DC48701E2B9D146D0009DCDC /* nina.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = nina.entitlements; sourceTree = "<group>"; };
+		DC4870232B9D146D0009DCDC /* ninaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ninaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC4870272B9D146D0009DCDC /* ninaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ninaTests.swift; sourceTree = "<group>"; };
+		DC48702D2B9D146D0009DCDC /* ninaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ninaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC4870312B9D146D0009DCDC /* ninaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ninaUITests.swift; sourceTree = "<group>"; };
+		DC4870332B9D146D0009DCDC /* ninaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ninaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC48700F2B9D146C0009DCDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC4870202B9D146D0009DCDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC48702A2B9D146D0009DCDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DC4870092B9D146C0009DCDC = {
+			isa = PBXGroup;
+			children = (
+				DC4870142B9D146C0009DCDC /* nina */,
+				DC4870262B9D146D0009DCDC /* ninaTests */,
+				DC4870302B9D146D0009DCDC /* ninaUITests */,
+				DC4870132B9D146C0009DCDC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DC4870132B9D146C0009DCDC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DC4870122B9D146C0009DCDC /* nina.app */,
+				DC4870232B9D146D0009DCDC /* ninaTests.xctest */,
+				DC48702D2B9D146D0009DCDC /* ninaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DC4870142B9D146C0009DCDC /* nina */ = {
+			isa = PBXGroup;
+			children = (
+				DC4870152B9D146C0009DCDC /* ninaApp.swift */,
+				DC4870172B9D146C0009DCDC /* ContentView.swift */,
+				DC4870192B9D146D0009DCDC /* Assets.xcassets */,
+				DC48701E2B9D146D0009DCDC /* nina.entitlements */,
+				DC48701B2B9D146D0009DCDC /* Preview Content */,
+			);
+			path = nina;
+			sourceTree = "<group>";
+		};
+		DC48701B2B9D146D0009DCDC /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				DC48701C2B9D146D0009DCDC /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DC4870262B9D146D0009DCDC /* ninaTests */ = {
+			isa = PBXGroup;
+			children = (
+				DC4870272B9D146D0009DCDC /* ninaTests.swift */,
+			);
+			path = ninaTests;
+			sourceTree = "<group>";
+		};
+		DC4870302B9D146D0009DCDC /* ninaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DC4870312B9D146D0009DCDC /* ninaUITests.swift */,
+				DC4870332B9D146D0009DCDC /* ninaUITestsLaunchTests.swift */,
+			);
+			path = ninaUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DC4870112B9D146C0009DCDC /* nina */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC4870372B9D146E0009DCDC /* Build configuration list for PBXNativeTarget "nina" */;
+			buildPhases = (
+				DC48700E2B9D146C0009DCDC /* Sources */,
+				DC48700F2B9D146C0009DCDC /* Frameworks */,
+				DC4870102B9D146C0009DCDC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = nina;
+			productName = nina;
+			productReference = DC4870122B9D146C0009DCDC /* nina.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DC4870222B9D146D0009DCDC /* ninaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC48703A2B9D146E0009DCDC /* Build configuration list for PBXNativeTarget "ninaTests" */;
+			buildPhases = (
+				DC48701F2B9D146D0009DCDC /* Sources */,
+				DC4870202B9D146D0009DCDC /* Frameworks */,
+				DC4870212B9D146D0009DCDC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC4870252B9D146D0009DCDC /* PBXTargetDependency */,
+			);
+			name = ninaTests;
+			productName = ninaTests;
+			productReference = DC4870232B9D146D0009DCDC /* ninaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DC48702C2B9D146D0009DCDC /* ninaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC48703D2B9D146E0009DCDC /* Build configuration list for PBXNativeTarget "ninaUITests" */;
+			buildPhases = (
+				DC4870292B9D146D0009DCDC /* Sources */,
+				DC48702A2B9D146D0009DCDC /* Frameworks */,
+				DC48702B2B9D146D0009DCDC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC48702F2B9D146D0009DCDC /* PBXTargetDependency */,
+			);
+			name = ninaUITests;
+			productName = ninaUITests;
+			productReference = DC48702D2B9D146D0009DCDC /* ninaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DC48700A2B9D146C0009DCDC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					DC4870112B9D146C0009DCDC = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					DC4870222B9D146D0009DCDC = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = DC4870112B9D146C0009DCDC;
+					};
+					DC48702C2B9D146D0009DCDC = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = DC4870112B9D146C0009DCDC;
+					};
+				};
+			};
+			buildConfigurationList = DC48700D2B9D146C0009DCDC /* Build configuration list for PBXProject "nina" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DC4870092B9D146C0009DCDC;
+			productRefGroup = DC4870132B9D146C0009DCDC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DC4870112B9D146C0009DCDC /* nina */,
+				DC4870222B9D146D0009DCDC /* ninaTests */,
+				DC48702C2B9D146D0009DCDC /* ninaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DC4870102B9D146C0009DCDC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC48701D2B9D146D0009DCDC /* Preview Assets.xcassets in Resources */,
+				DC48701A2B9D146D0009DCDC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC4870212B9D146D0009DCDC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC48702B2B9D146D0009DCDC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DC48700E2B9D146C0009DCDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC4870182B9D146C0009DCDC /* ContentView.swift in Sources */,
+				DC4870162B9D146C0009DCDC /* ninaApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC48701F2B9D146D0009DCDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC4870282B9D146D0009DCDC /* ninaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC4870292B9D146D0009DCDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC4870342B9D146D0009DCDC /* ninaUITestsLaunchTests.swift in Sources */,
+				DC4870322B9D146D0009DCDC /* ninaUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DC4870252B9D146D0009DCDC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC4870112B9D146C0009DCDC /* nina */;
+			targetProxy = DC4870242B9D146D0009DCDC /* PBXContainerItemProxy */;
+		};
+		DC48702F2B9D146D0009DCDC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC4870112B9D146C0009DCDC /* nina */;
+			targetProxy = DC48702E2B9D146D0009DCDC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DC4870352B9D146E0009DCDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DC4870362B9D146E0009DCDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		DC4870382B9D146E0009DCDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = nina/nina.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"nina/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ishaanarya.nina;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		DC4870392B9D146E0009DCDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = nina/nina.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"nina/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ishaanarya.nina;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		DC48703B2B9D146E0009DCDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ishaanarya.ninaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nina.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/nina";
+			};
+			name = Debug;
+		};
+		DC48703C2B9D146E0009DCDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ishaanarya.ninaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nina.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/nina";
+			};
+			name = Release;
+		};
+		DC48703E2B9D146E0009DCDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ishaanarya.ninaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = nina;
+			};
+			name = Debug;
+		};
+		DC48703F2B9D146E0009DCDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ishaanarya.ninaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = nina;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DC48700D2B9D146C0009DCDC /* Build configuration list for PBXProject "nina" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC4870352B9D146E0009DCDC /* Debug */,
+				DC4870362B9D146E0009DCDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC4870372B9D146E0009DCDC /* Build configuration list for PBXNativeTarget "nina" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC4870382B9D146E0009DCDC /* Debug */,
+				DC4870392B9D146E0009DCDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC48703A2B9D146E0009DCDC /* Build configuration list for PBXNativeTarget "ninaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC48703B2B9D146E0009DCDC /* Debug */,
+				DC48703C2B9D146E0009DCDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC48703D2B9D146E0009DCDC /* Build configuration list for PBXNativeTarget "ninaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC48703E2B9D146E0009DCDC /* Debug */,
+				DC48703F2B9D146E0009DCDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DC48700A2B9D146C0009DCDC /* Project object */;
+}
