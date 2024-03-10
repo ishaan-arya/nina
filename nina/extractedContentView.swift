@@ -39,7 +39,7 @@ struct ExtractedContentView: View {
                     .onAppear {
                         textOffset = 62  // Adjust this value to the final position offset
                     }
-                    .padding(.top, 62)
+                    .padding(.top, 20)
                     .zIndex(1)
 
                 Spacer()

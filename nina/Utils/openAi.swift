@@ -103,7 +103,7 @@ func generateScript(userActions: String, files: String, path: String) async -> S
     let tree = generateDirectoryTree(from: path)
     let prompt = "Actions: \(userActions) \n Absolute Paths: \(files) \n Tree: \(tree)"
     print("PROMPT: \(prompt)")
-    let query = ChatQuery(model: .gpt4_0125_preview, messages: [.init(role: .system, content: "Given specific actions to perform, the absolute paths of the associated files, and the folder directory tree, craft a Bash script that efficiently executes these actions. Output only the Bash script without additional commentary. Always make directories with read and write permissions"), .init(role: .user, content: "Actions: \(userActions) \n Absolute Paths: \(files) \n Tree: \(tree)")], functions: nil, temperature: nil, topP: nil, n: nil, stop: nil, maxTokens: nil, presencePenalty: nil, frequencyPenalty: nil, logitBias: nil, user: nil)
+    let query = ChatQuery(model: .gpt4_0125_preview, messages: [.init(role: .system, content: "Given specific actions to perform, the absolute paths of the associated files, and the folder directory tree, craft a Bash script that efficiently executes these actions. Output only the Bash script without additional commentary. If you create a file or a directory, give it read and write permission. Always use sudo wherever you can."), .init(role: .user, content: "Actions: \(userActions) \n Absolute Paths: \(files) \n Tree: \(tree)")], functions: nil, temperature: nil, topP: nil, n: nil, stop: nil, maxTokens: nil, presencePenalty: nil, frequencyPenalty: nil, logitBias: nil, user: nil)
     
     do {
         let result = try await openAI.chats(query: query)

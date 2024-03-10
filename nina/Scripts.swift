@@ -107,20 +107,13 @@ func createShellScript(with instructions: String, at path: String) -> String? {
 
 func executeShellScript(at path: String) {
     let task = Process()
-    task.executableURL = URL(fileURLWithPath: "/usr/bin/sudo")
-    task.arguments = ["/bin/bash", path]
-
-    let pipe = Pipe()
-    task.standardOutput = pipe
-    task.standardError = pipe
-
+    task.executableURL = URL(fileURLWithPath: "/bin/bash")
+    task.arguments = [path]
+    
     do {
         try task.run()
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output = String(data: data, encoding: .utf8) ?? ""
-        print(output)
         task.waitUntilExit()
     } catch {
-        print("Error: Failed to execute shell script with sudo at \(path): \(error)")
+        print("Error executing shell script: \(error)")
     }
 }

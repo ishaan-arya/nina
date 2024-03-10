@@ -10,15 +10,15 @@ struct AnimatedSearchBar: View {
             HStack {
                 if isExpanded {
                     TextField("Search...", text: $searchText, onCommit: onCommit)
-                                           .foregroundColor(.black)
-                                           .textFieldStyle(PlainTextFieldStyle())
-                                           .padding(8)
-                                           .frame(height: 40)
-                                           .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
-                                           .transition(.opacity)
-                                           .onSubmit {
-                                               onCommit() // Invoke the onCommit closure when the user presses Enter
-                                           }
+                           .foregroundColor(.black)
+                           .textFieldStyle(PlainTextFieldStyle())
+                           .padding(8)
+                           .frame(height: 40)
+                           .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
+                           .transition(.opacity)
+                           .onSubmit {
+                               onCommit()
+                           }
                 }
 
                 Spacer()

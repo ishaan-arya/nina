@@ -20,6 +20,7 @@
 		DC4870452B9D324E0009DCDC /* extractedContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870442B9D324E0009DCDC /* extractedContentView.swift */; };
 		DC4870532B9D5A440009DCDC /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = DC4870522B9D5A440009DCDC /* OpenAI */; };
 		DC4870552B9D65530009DCDC /* progressScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870542B9D65530009DCDC /* progressScreen.swift */; };
+		DCCE99D02B9DAC54004775C6 /* Scripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCE99CF2B9DAC54004775C6 /* Scripts.swift */; };
 		FAB0D4FD2B9D2CDA00BC7635 /* openAi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0D4FC2B9D2CDA00BC7635 /* openAi.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		DC4870422B9D21440009DCDC /* animatedSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animatedSearchBar.swift; sourceTree = "<group>"; };
 		DC4870442B9D324E0009DCDC /* extractedContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extractedContentView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xcfilelist; };
 		DC4870542B9D65530009DCDC /* progressScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progressScreen.swift; sourceTree = "<group>"; };
+		DCCE99CF2B9DAC54004775C6 /* Scripts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scripts.swift; path = ../Scripts.swift; sourceTree = "<group>"; };
 		FAB0D4FC2B9D2CDA00BC7635 /* openAi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openAi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 		2CA275612B9D18EE00F24674 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				DCCE99CF2B9DAC54004775C6 /* Scripts.swift */,
 				2CA275642B9D1A2E00F24674 /* Extract.swift */,
 				FAB0D4FC2B9D2CDA00BC7635 /* openAi.swift */,
 			);
@@ -296,6 +299,7 @@
 				DC4870432B9D21440009DCDC /* animatedSearchBar.swift in Sources */,
 				DC4870182B9D146C0009DCDC /* ContentView.swift in Sources */,
 				DC4870412B9D16040009DCDC /* customSearchBar.swift in Sources */,
+				DCCE99D02B9DAC54004775C6 /* Scripts.swift in Sources */,
 				FAB0D4FD2B9D2CDA00BC7635 /* openAi.swift in Sources */,
 				DC4870552B9D65530009DCDC /* progressScreen.swift in Sources */,
 				DC4870162B9D146C0009DCDC /* ninaApp.swift in Sources */,
