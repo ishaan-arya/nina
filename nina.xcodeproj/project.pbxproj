@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2CA275652B9D1A2E00F24674 /* Extract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA275642B9D1A2E00F24674 /* Extract.swift */; };
+		84E643852B9D658B009EDBCF /* tree_gen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E643842B9D658B009EDBCF /* tree_gen.swift */; };
 		DC4870162B9D146C0009DCDC /* ninaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870152B9D146C0009DCDC /* ninaApp.swift */; };
 		DC4870182B9D146C0009DCDC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870172B9D146C0009DCDC /* ContentView.swift */; };
 		DC48701A2B9D146D0009DCDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC4870192B9D146D0009DCDC /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		2CA275642B9D1A2E00F24674 /* Extract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extract.swift; sourceTree = "<group>"; };
+		84E643842B9D658B009EDBCF /* tree_gen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tree_gen.swift; sourceTree = "<group>"; };
 		DC4870122B9D146C0009DCDC /* nina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC4870152B9D146C0009DCDC /* ninaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ninaApp.swift; sourceTree = "<group>"; };
 		DC4870172B9D146C0009DCDC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			children = (
 				2CA275642B9D1A2E00F24674 /* Extract.swift */,
 				FAB0D4FC2B9D2CDA00BC7635 /* openAi.swift */,
+				84E643842B9D658B009EDBCF /* tree_gen.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			files = (
 				DC4870432B9D21440009DCDC /* animatedSearchBar.swift in Sources */,
 				DC4870182B9D146C0009DCDC /* ContentView.swift in Sources */,
+				84E643852B9D658B009EDBCF /* tree_gen.swift in Sources */,
 				DC4870412B9D16040009DCDC /* customSearchBar.swift in Sources */,
 				FAB0D4FD2B9D2CDA00BC7635 /* openAi.swift in Sources */,
 				DC4870162B9D146C0009DCDC /* ninaApp.swift in Sources */,
