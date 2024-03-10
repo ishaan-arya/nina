@@ -7,7 +7,7 @@ struct ContentView: View {
         ZStack {
             Color.white.opacity(0.95).edgesIgnoringSafeArea(.all)
             if isShowingExtractedContent {
-                ExtractedContentView(isShowing: $isShowingExtractedContent)
+                ExtractedContentView(isShowing: $isShowingExtractedContent, selectedFolder: $selectedFolder)
             } else {
                 VStack {
                     Spacer()
