@@ -4,6 +4,10 @@ struct ExtractedContentView: View {
     @Binding var isShowing: Bool
     @State private var isSearchBarExpanded: Bool = false
     @State private var searchText: String = ""
+    @State private var isNinaTextVisible: Bool = false
+    @State private var isExpanded = false
+    @State private var showProgressScreen = false
+    @Binding var selectedFolder: URL?
     @State private var hovered: String? = nil  // Keep track of which button is being hovered
     
     @State private var showProgressScreen = false
@@ -17,16 +21,16 @@ struct ExtractedContentView: View {
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    
     let boxes = [
         "Make a folder and put...",
         "What's the best practice for...",
         "I have a bug in SwiftData, can you...",
         "Can you explain this Xcode feature..."
     ]
-
+    
     var body: some View {
-        ZStack(alignment: .top) {
+        ZStack {
+            Color.white.opacity(0.95).edgesIgnoringSafeArea(.all)
             VStack {
                 Text("NINA")
                     .font(.system(size: 75, weight: .bold, design: .rounded))
@@ -36,6 +40,28 @@ struct ExtractedContentView: View {
                     .onAppear {
                         textOffset = 62  // Adjust this value to the final position offset
                     }
+
+                AnimatedSearchBar(
+                    isExpanded: $isSearchBarExpanded,
+                    searchText: $searchText,
+                    onCommit: {
+                        //print("COMMITTING")
+                        Task {
+                            await processSearchText()
+                        }
+                    }
+                )
+                
+                .sheet(isPresented: $showProgressScreen) {
+                    ProgressScreen(showProgressScreen: $showProgressScreen)
+                }
+                LazyVGrid(columns: gridItems, spacing: 20) {
+                    ForEach(boxes, id: \.self) { box in
+                        Button(action: {
+                            withAnimation(.spring()) {
+                                self.searchText = box
+                                self.isSearchBarExpanded = true
+                    .padding(.top, 62)
                     .zIndex(1)
 
                 Spacer()
@@ -108,12 +134,59 @@ struct ExtractedContentView: View {
             ProgressScreen(showProgressScreen: $showProgressScreen)
         }
     }
-}
+    private func processSearchText() async {
+        let userPrompt = searchText
+        print("User prompt: \(userPrompt)")
 
+        let userKeywords = await getUserKeywords(userPrompt: userPrompt)
+        print("User keywords: \(userKeywords)")
+
+        let userAction = await getUserAction(userPrompt: userPrompt)
+        print("User action: \(userAction)")
+
+        if let selectedFolder = selectedFolder {
+            selectedFolder.startAccessingSecurityScopedResource()
+            print("Selected folder: \(selectedFolder.path)")
+
+            let extractor = Extract()
+            extractor.createDictionary(folderURL: selectedFolder) { keywordsByFilePath in
+                Task {
+                    var scriptPaths: [String] = []
+
+                    for (filePath, keywords) in keywordsByFilePath {
+                        print("File: \(filePath)")
+                        let fileKeywords = "File: \(filePath) Keywords: \(keywords.joined(separator: ", "))"
+
+                        let filesToModify = await getFilesToModify(userKeywords: userKeywords, fileKeywords: fileKeywords)
+                        let script = await generateScript(userActions: userAction, files: filesToModify, path: selectedFolder.path)
+                        print("Generated script: \(script)")
+
+                        if let scriptPath = createShellScript(with: script, at: selectedFolder.path) {
+                            scriptPaths.append(scriptPath)
+                        }
+                    }
+
+                    // Execute the generated scripts
+                    for scriptPath in scriptPaths {
+                        print("Executing script at: \(scriptPath)")
+                        executeShellScript(at: scriptPath)
+                    }
+
+                    selectedFolder.stopAccessingSecurityScopedResource()
+                }
+            }
+        } else {
+            print("No selected folder")
+        }
+    }
+}
 // Implement AnimatedSearchBar and other subviews as necessary
 
 struct ExtractedContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ExtractedContentView(isShowing: .constant(true))
+        ExtractedContentView(
+            isShowing: .constant(true),
+            selectedFolder: .constant(URL(fileURLWithPath: "/path/to/sample/folder"))
+        )
     }
 }
