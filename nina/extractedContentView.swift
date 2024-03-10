@@ -161,6 +161,7 @@ private func processSearchText() async {
     var completeDictString = ""
     for (filePath, keywords) in keywordsByFilePath {
         print("File: \(filePath)")
+        print("Keywords: \(keywords)")
         let fileKeywords = "File: \(filePath) Keywords: \(keywords.joined(separator: ", "))"
         completeDictString += fileKeywords
     }
@@ -168,6 +169,7 @@ private func processSearchText() async {
     let script = await generateScript(userActions: userPrompt, files: completeDictString, path: selectedFolder?.path ?? "")
     createShellScript(with: script, at: selectedFolder!.path)
     executeShellScript(at: selectedFolder!.path + "/script.sh")
+    deleteFile(at: selectedFolder!.path + "/script.sh")
 }
 
 private func updateDictionary() {
@@ -188,7 +190,7 @@ private func updateDictionary() {
             if fileURL.isFileURL {
                 let filePath = fileURL.path
                 if !keywordsByFilePath.keys.contains(filePath) {
-                    extractor.extractKeywordsFromText(fileURL: fileURL) { keywords in
+                    extractor.extractKeywordsFromText(text: fileURL.path) { keywords in
                         if let keywords = keywords {
                             keywordsByFilePath[filePath] = keywords
                         }

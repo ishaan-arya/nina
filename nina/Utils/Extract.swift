@@ -4,6 +4,19 @@ import PDFKit
 import OpenAI
 
 class Extract {
+    
+    func deleteFile(at path: String) {
+        let fileManager = FileManager.default
+        
+        do {
+            try fileManager.removeItem(atPath: path)
+            print("File deleted successfully at path: \(path)")
+        } catch {
+            print("Error deleting file at path: \(path)")
+            print("Error description: \(error.localizedDescription)")
+        }
+    }
+    
     func extractTextFromFolder(_ folderURL: URL, completion: @escaping ([String], [String]) -> Void) {
         var textContent: [String] = []
         var filePaths: [String] = []
