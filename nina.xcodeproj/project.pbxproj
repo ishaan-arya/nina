@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0C6B702B9D326B00F7A039 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 2C0C6B6F2B9D326B00F7A039 /* OpenAI */; };
 		2CA275652B9D1A2E00F24674 /* Extract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA275642B9D1A2E00F24674 /* Extract.swift */; };
 		DC4870162B9D146C0009DCDC /* ninaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870152B9D146C0009DCDC /* ninaApp.swift */; };
 		DC4870182B9D146C0009DCDC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870172B9D146C0009DCDC /* ContentView.swift */; };
@@ -60,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C0C6B702B9D326B00F7A039 /* OpenAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +167,9 @@
 			dependencies = (
 			);
 			name = nina;
+			packageProductDependencies = (
+				2C0C6B6F2B9D326B00F7A039 /* OpenAI */,
+			);
 			productName = nina;
 			productReference = DC4870122B9D146C0009DCDC /* nina.app */;
 			productType = "com.apple.product-type.application";
@@ -237,6 +242,9 @@
 				Base,
 			);
 			mainGroup = DC4870092B9D146C0009DCDC;
+			packageReferences = (
+				2C0C6B6E2B9D326B00F7A039 /* XCRemoteSwiftPackageReference "OpenAI" */,
+			);
 			productRefGroup = DC4870132B9D146C0009DCDC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -597,6 +605,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2C0C6B6E2B9D326B00F7A039 /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2C0C6B6F2B9D326B00F7A039 /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C0C6B6E2B9D326B00F7A039 /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DC48700A2B9D146C0009DCDC /* Project object */;
 }

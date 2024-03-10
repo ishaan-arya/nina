@@ -10,7 +10,7 @@ import OpenAI
 
 // Assuming OpenAI is a correctly defined module and 'chats' is an async function within that module
 func openAiChat() async -> String {
-    let openAI = OpenAI(apiToken: "TOKEN")
+    let openAI = OpenAI(apiToken: "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")
     let query = ChatQuery(model: .gpt3_5Turbo, messages: [.init(role: .user, content: "who are you")], functions: nil, temperature: nil, topP: nil, n: nil, stop: nil, maxTokens: nil, presencePenalty: nil, frequencyPenalty: nil, logitBias: nil, user: nil)
     
     do {
