@@ -3,30 +3,6 @@ import SwiftUI
 
 struct ExtractedContentView: View {
      @State private var keywordsByFilePath: [String: [String]] = [:]
-     private func processSearchText() async {
-        let userPrompt = searchText
-        print("User prompt: \(userPrompt)")
-
-        let userKeywords = await getUserKeywords(userPrompt: userPrompt)
-        print("User keywords: \(userKeywords)")
-
-        let userAction = await getUserAction(userPrompt: userPrompt)
-        print("User action: \(userAction)")
-
-        var completeDictString = ""
-        for (filePath, keywords) in keywordsByFilePath {
-            print("File: \(filePath)")
-            let fileKeywords = "File: \(filePath) Keywords: \(keywords.joined(separator: ", "))"
-            completeDictString += fileKeywords
-            /*let filesToModify = await getFilesToModify(userKeywords: userKeywords, fileKeywords: fileKeywords)*/
-
-        }
-        let script = await generateScript(userActions: userPrompt, files: completeDictString, path: selectedFolder?.path ?? "")
-        createShellScript(with: script, at: selectedFolder!.path)
-        executeShellScript(at: selectedFolder!.path + "/script.sh")
-        deleteFile(at: selectedFolder!.path + "/script.sh")
-        
-    }
 
     private func createDictionary() {
         if let selectedFolder = selectedFolder {
@@ -169,10 +145,64 @@ struct ExtractedContentView: View {
 }
     }
 
-        
+private func processSearchText() async {
+    let userPrompt = searchText
+    print("User prompt: \(userPrompt)")
+
+    let userKeywords = await getUserKeywords(userPrompt: userPrompt)
+    print("User keywords: \(userKeywords)")
+
+    let userAction = await getUserAction(userPrompt: userPrompt)
+    print("User action: \(userAction)")
+
+    // Update the keywordsByFilePath dictionary with new files
+    updateDictionary()
+
+    var completeDictString = ""
+    for (filePath, keywords) in keywordsByFilePath {
+        print("File: \(filePath)")
+        let fileKeywords = "File: \(filePath) Keywords: \(keywords.joined(separator: ", "))"
+        completeDictString += fileKeywords
     }
 
+    let script = await generateScript(userActions: userPrompt, files: completeDictString, path: selectedFolder?.path ?? "")
+    createShellScript(with: script, at: selectedFolder!.path)
+    executeShellScript(at: selectedFolder!.path + "/script.sh")
+}
 
+private func updateDictionary() {
+    guard let selectedFolder = selectedFolder else {
+        print("No selected folder")
+        return
+    }
+
+    selectedFolder.startAccessingSecurityScopedResource()
+    print("Selected folder: \(selectedFolder.path)")
+
+    let extractor = Extract()
+    let fileManager = FileManager.default
+
+    func processDirectory(_ directoryURL: URL) {
+        let enumerator = fileManager.enumerator(at: directoryURL, includingPropertiesForKeys: nil)
+        while let fileURL = enumerator?.nextObject() as? URL {
+            if fileURL.isFileURL {
+                let filePath = fileURL.path
+                if !keywordsByFilePath.keys.contains(filePath) {
+                    extractor.extractKeywordsFromText(fileURL: fileURL) { keywords in
+                        if let keywords = keywords {
+                            keywordsByFilePath[filePath] = keywords
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    processDirectory(selectedFolder)
+
+    selectedFolder.stopAccessingSecurityScopedResource()
+}
+}
 
 
 // Implement AnimatedSearchBar and other subviews as necessary
