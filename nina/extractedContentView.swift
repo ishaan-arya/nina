@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ExtractedContentView: View {
+
     @Binding var isShowing: Bool
 
     var body: some View {
@@ -39,5 +40,13 @@ struct ExtractedContentView: View {
 struct ExtractedContentView_Previews: PreviewProvider {
     static var previews: some View {
         ExtractedContentView(isShowing: .constant(true))
+
+                    .padding(.top, 125)
+
+                Spacer()
+            }
+        }
     }
 }
+
+

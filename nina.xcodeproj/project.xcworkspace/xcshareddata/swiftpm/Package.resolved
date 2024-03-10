@@ -1,5 +1,7 @@
 {
+
   "originHash" : "17192962f26c6210d3e97670808561f8cd736f97fb45212d1017b119c4b3e112",
+
   "pins" : [
     {
       "identity" : "openai",
@@ -9,16 +11,8 @@
         "revision" : "35afc9a6ee127b8f22a85a31aec2036a987478af",
         "version" : "0.2.6"
       }
+
     },
-    {
-      "identity" : "openaiswift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/adamrushy/OpenAISwift",
-      "state" : {
-        "revision" : "ca66fb720d6ebb657601db5a0852b830ae310a4c",
-        "version" : "1.4.1"
-      }
-    }
   ],
   "version" : 3
 }
