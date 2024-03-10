@@ -4,6 +4,7 @@ struct AnimatedSearchBar: View {
     @State private var isExpanded: Bool = false
     @State private var searchText: String = ""
 
+
     var body: some View {
         ZStack {
             HStack {
