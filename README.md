@@ -1,3 +1,10 @@
+# NINA
+
+📁 An AI based natural language file manager
+
+https://github.com/ishaan-arya/nina/assets/66945981/540a2a2e-182d-46c0-a68a-a79589915073
+
+
 ## Inspiration
 In today's digital age, we have witnessed the struggles faced by our grandparents and others when navigating computers and technology. Traditional methods of interacting with computers through command-line interfaces (CLIs) and graphical user interfaces (GUIs) can be unintuitive and challenging for those who are not tech-savvy. As society shifts towards natural language inputs for information retrieval, we recognized the opportunity to extend this approach to file management. Inspired by the desire to make technology more accessible, we developed NINA (Natural Interaction and Navigation Assistant). Our goal is to empower users, regardless of their technical background, to effortlessly organize and work with their files using natural language commands, fostering a more inclusive digital environment where everyone can thrive.
 
