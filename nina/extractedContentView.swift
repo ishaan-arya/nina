@@ -9,10 +9,9 @@ struct ExtractedContentView: View {
     @State private var showProgressScreen = false
     @Binding var selectedFolder: URL?
     @State private var hovered: String? = nil  // Keep track of which button is being hovered
-    
-    @State private var showProgressScreen = false
+
     @State private var textOffset: CGFloat = 600  // Start from below the visible area
-    
+
     let drawerBackground = Color.white
     let shadowColor = Color.gray.opacity(0.5)
 
@@ -27,7 +26,7 @@ struct ExtractedContentView: View {
         "I have a bug in SwiftData, can you...",
         "Can you explain this Xcode feature..."
     ]
-    
+
     var body: some View {
         ZStack {
             Color.white.opacity(0.95).edgesIgnoringSafeArea(.all)
@@ -40,27 +39,6 @@ struct ExtractedContentView: View {
                     .onAppear {
                         textOffset = 62  // Adjust this value to the final position offset
                     }
-
-                AnimatedSearchBar(
-                    isExpanded: $isSearchBarExpanded,
-                    searchText: $searchText,
-                    onCommit: {
-                        //print("COMMITTING")
-                        Task {
-                            await processSearchText()
-                        }
-                    }
-                )
-                
-                .sheet(isPresented: $showProgressScreen) {
-                    ProgressScreen(showProgressScreen: $showProgressScreen)
-                }
-                LazyVGrid(columns: gridItems, spacing: 20) {
-                    ForEach(boxes, id: \.self) { box in
-                        Button(action: {
-                            withAnimation(.spring()) {
-                                self.searchText = box
-                                self.isSearchBarExpanded = true
                     .padding(.top, 62)
                     .zIndex(1)
 
@@ -69,11 +47,15 @@ struct ExtractedContentView: View {
 
             // Drawer for the search bar and buttons
             VStack(spacing: 20) {
-                AnimatedSearchBar(isExpanded: $isSearchBarExpanded, searchText: $searchText,  onCommit: {
-                        print(searchText) //TODO: call the right function
-                        showProgressScreen = true
-                    })
-                    .padding()
+                AnimatedSearchBar(isExpanded: $isSearchBarExpanded, searchText: $searchText, onCommit: {
+                    print(searchText) //TODO: call the right function
+                    Task {
+                        await processSearchText()
+                    }
+                    showProgressScreen = true
+
+                })
+                .padding()
 
                 LazyVGrid(columns: gridItems, spacing: 15) {
                     ForEach(boxes, id: \.self) { box in
@@ -110,23 +92,22 @@ struct ExtractedContentView: View {
             .shadow(color: shadowColor, radius: 30, x: 0, y: -20)
             .offset(y: 150)
             .animation(.interactiveSpring(response: 0.6, dampingFraction: 0.8, blendDuration: 0.8), value: isSearchBarExpanded)
-            
+
             .overlay(
                 Button(action: {
                     isShowing = false
                 }) {
                     Image(systemName: "arrow.left")
-                         .foregroundColor(.blue)
+                        .foregroundColor(.blue)
                         .padding()
                         .clipShape(Rectangle())
-                      .cornerRadius(10)
-                   .shadow(color: shadowColor, radius: 30, x: 0, y: -20)
-
+                        .cornerRadius(10)
+                        .shadow(color: shadowColor, radius: 30, x: 0, y: -20)
                 }
                 .padding([.top, .leading], 20), // This will position the button to the top left
                 alignment: .topLeading // Changed from .top to .topLeading
             )
-         }
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.white.opacity(0.95).edgesIgnoringSafeArea(.all))
         .sheet(isPresented: $showProgressScreen) {
@@ -134,6 +115,7 @@ struct ExtractedContentView: View {
             ProgressScreen(showProgressScreen: $showProgressScreen)
         }
     }
+
     private func processSearchText() async {
         let userPrompt = searchText
         print("User prompt: \(userPrompt)")
@@ -180,6 +162,7 @@ struct ExtractedContentView: View {
         }
     }
 }
+
 // Implement AnimatedSearchBar and other subviews as necessary
 
 struct ExtractedContentView_Previews: PreviewProvider {
