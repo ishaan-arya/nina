@@ -55,7 +55,7 @@
 		DC4870332B9D146D0009DCDC /* ninaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ninaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DC4870402B9D16040009DCDC /* customSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customSearchBar.swift; sourceTree = "<group>"; };
 		DC4870422B9D21440009DCDC /* animatedSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animatedSearchBar.swift; sourceTree = "<group>"; };
-		DC4870442B9D324E0009DCDC /* extractedContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extractedContentView.swift; sourceTree = "<group>"; };
+		DC4870442B9D324E0009DCDC /* extractedContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extractedContentView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xcfilelist; };
 		DC4870542B9D65530009DCDC /* progressScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progressScreen.swift; sourceTree = "<group>"; };
 		FAB0D4FC2B9D2CDA00BC7635 /* openAi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openAi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -468,6 +468,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -493,6 +494,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
