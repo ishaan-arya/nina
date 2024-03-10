@@ -28,7 +28,7 @@ struct AnimatedSearchBar: View {
                     }
                 }) {
                     Image(systemName: isExpanded ? "xmark" : "magnifyingglass")
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(Color.black)
                         .padding(10)
                 }
                 .background(Color.white)
