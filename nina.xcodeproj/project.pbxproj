@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0C6B702B9D326B00F7A039 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 2C0C6B6F2B9D326B00F7A039 /* OpenAI */; };
 		2CA275652B9D1A2E00F24674 /* Extract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA275642B9D1A2E00F24674 /* Extract.swift */; };
 		DC4870162B9D146C0009DCDC /* ninaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870152B9D146C0009DCDC /* ninaApp.swift */; };
 		DC4870182B9D146C0009DCDC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870172B9D146C0009DCDC /* ContentView.swift */; };
