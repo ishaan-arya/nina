@@ -9,6 +9,7 @@ struct ExtractedContentView: View {
     @State private var showProgressScreen = false
     @Binding var selectedFolder: URL?
     @State private var hovered: String? = nil  // Keep track of which button is being hovered
+    @State private var keywordsByFilePath: [String: [String]] = [:]
 
     @State private var textOffset: CGFloat = 600  // Start from below the visible area
 
@@ -38,6 +39,7 @@ struct ExtractedContentView: View {
                     .animation(.easeOut(duration: 2.0), value: textOffset)
                     .onAppear {
                         textOffset = 62  // Adjust this value to the final position offset
+                        createDictionary()
                     }
                     .padding(.top, 20)
                     .zIndex(1)
@@ -116,6 +118,22 @@ struct ExtractedContentView: View {
         }
     }
 
+    private func createDictionary() {
+        if let selectedFolder = selectedFolder {
+            selectedFolder.startAccessingSecurityScopedResource()
+            print("Selected folder: \(selectedFolder.path)")
+
+            let extractor = Extract()
+            extractor.createDictionary(folderURL: selectedFolder) { keywordsByFilePath in
+                self.keywordsByFilePath = keywordsByFilePath
+            }
+
+            selectedFolder.stopAccessingSecurityScopedResource()
+        } else {
+            print("No selected folder")
+        }
+    }
+
     private func processSearchText() async {
         let userPrompt = searchText
         print("User prompt: \(userPrompt)")
@@ -126,40 +144,17 @@ struct ExtractedContentView: View {
         let userAction = await getUserAction(userPrompt: userPrompt)
         print("User action: \(userAction)")
 
-        if let selectedFolder = selectedFolder {
-            selectedFolder.startAccessingSecurityScopedResource()
-            print("Selected folder: \(selectedFolder.path)")
+        var completeDictString = ""
+        for (filePath, keywords) in keywordsByFilePath {
+            print("File: \(filePath)")
+            let fileKeywords = "File: \(filePath) Keywords: \(keywords.joined(separator: ", "))"
+            completeDictString += fileKeywords
+            /*let filesToModify = await getFilesToModify(userKeywords: userKeywords, fileKeywords: fileKeywords)*/
 
-            let extractor = Extract()
-            extractor.createDictionary(folderURL: selectedFolder) { keywordsByFilePath in
-                Task {
-                    var scriptPaths: [String] = []
-
-                    for (filePath, keywords) in keywordsByFilePath {
-                        print("File: \(filePath)")
-                        let fileKeywords = "File: \(filePath) Keywords: \(keywords.joined(separator: ", "))"
-
-                        let filesToModify = await getFilesToModify(userKeywords: userKeywords, fileKeywords: fileKeywords)
-                        let script = await generateScript(userActions: userAction, files: filesToModify, path: selectedFolder.path)
-                        print("Generated script: \(script)")
-
-                        if let scriptPath = createShellScript(with: script, at: selectedFolder.path) {
-                            scriptPaths.append(scriptPath)
-                        }
-                    }
-
-                    // Execute the generated scripts
-                    for scriptPath in scriptPaths {
-                        print("Executing script at: \(scriptPath)")
-                        executeShellScript(at: scriptPath)
-                    }
-
-                    selectedFolder.stopAccessingSecurityScopedResource()
-                }
-            }
-        } else {
-            print("No selected folder")
         }
+        let script = await generateScript(userActions: userPrompt, files: completeDictString, path: selectedFolder?.path ?? "")
+        createShellScript(with: script, at: selectedFolder!.path)
+executeShellScript(at: selectedFolder!.path + "/script.sh")
     }
 }
 
