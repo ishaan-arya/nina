@@ -9,9 +9,10 @@ struct ContentView: View {
             Color.white.opacity(0.95).edgesIgnoringSafeArea(.all)
 
             if isShowingExtractedContent {
-                ExtractedContentView()
+                ExtractedContentView(isShowing: $isShowingExtractedContent)
             } else {
                 VStack {
+                    Spacer()
                     if let selectedFolder = selectedFolder {
                         Text("Selected Folder: \(selectedFolder.path)")
                             .foregroundColor(.black)
@@ -25,16 +26,21 @@ struct ContentView: View {
                     
                     DropView(selectedFolder: $selectedFolder)
                         .frame(width: 200, height: 150)
-                        .border(Color.gray, width: 2)
-                        .cornerRadius(10)
-                        .padding()
+                          .background(Color.white)
+                          .cornerRadius(10)
+                          .shadow(color: .blue, radius: 2, x: 0, y: 0)
+                          .overlay(
+                              RoundedRectangle(cornerRadius: 10)
+                                  .stroke(Color.blue, lineWidth: 2)
+                          )
+                          .padding()
                     
                     Button("📁 Select Folder") {
                         let openPanel = NSOpenPanel()
                         openPanel.allowsMultipleSelection = false
                         openPanel.canChooseDirectories = true
                         openPanel.canChooseFiles = false
-                        
+
                         if openPanel.runModal() == .OK {
                             selectedFolder = openPanel.url
                         }
@@ -42,7 +48,12 @@ struct ContentView: View {
                     .padding()
                     .buttonStyle(PlainButtonStyle())
                     .foregroundColor(.black)
-                    
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.blue, lineWidth: 2)
+                    )
+                    .padding()
+
                     Button("Extract Text") {
                         if let _ = selectedFolder {
                             // Assume extraction is done here, and we want to show the result
@@ -51,8 +62,16 @@ struct ContentView: View {
                     }
                     .padding()
                     .buttonStyle(PlainButtonStyle())
-                    .foregroundColor(.black)
-                    
+                    .foregroundColor(.white) // Text color of the button
+                    .background(Color.gray) // Background color of the button
+                    .cornerRadius(10) // Rounded corners of the button
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray, lineWidth: 2) // Blue border for the button
+                    )
+                    .padding()
+
+
                     Spacer()
                 }
             }
@@ -75,12 +94,11 @@ struct DropView: NSViewRepresentable {
     func updateNSView(_ nsView: NSView, context: Context) {
         nsView.subviews.forEach { $0.removeFromSuperview() }
         
-        let dropIndicator = NSImageView(image: NSImage(named: NSImage.folderName)!)
-        dropIndicator.frame = NSRect(x: (nsView.bounds.width - dropIndicator.bounds.width) / 2,
-                                     y: (nsView.bounds.height - dropIndicator.bounds.height) / 2,
-                                     width: dropIndicator.bounds.width,
-                                     height: dropIndicator.bounds.height)
-        nsView.addSubview(dropIndicator)
+        let uploadIcon = NSImageView(image: NSImage(systemSymbolName: "arrow.up.doc", accessibilityDescription: "Upload") ?? NSImage())
+        uploadIcon.contentTintColor = .gray // Set the color of the upload icon
+        uploadIcon.translatesAutoresizingMaskIntoConstraints = false
+        nsView.addSubview(uploadIcon)
+
     }
 }
 
