@@ -12,7 +12,7 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
 
             if isShowingExtractedContent {
-                ExtractedContentView(isShowing: $isShowingExtractedContent)
+                ExtractedContentView(isShowing: $isShowingExtractedContent, selectedFolder: $selectedFolder)
             } else {
                 VStack(spacing: 20) {
                     Spacer()

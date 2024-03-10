@@ -42,7 +42,7 @@ class Extract {
     }
 
     func extractKeywordsFromText(text: String, completion: @escaping ([String]?) -> Void) {
-        let openAI = OpenAI(apiToken: "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")
+        let openAI = OpenAI(apiToken: "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")
         let query = ChatQuery(model: .gpt3_5Turbo, messages: [.init(role: .system, content: "Extract at most 10 keywords from this text and return as a comma separated list. Here is an example: User: I love math homework, and I especially love calculus. Assistant: Math, Homework, Calculus"), .init(role: .user, content: " Here is the text: \(text)")], functions: nil, temperature: nil, topP: nil, n: nil, stop: nil, maxTokens: nil, presencePenalty: nil, frequencyPenalty: nil, logitBias: nil, user: nil)
         openAI.chats(query: query) { result in
             switch result {
@@ -57,14 +57,14 @@ class Extract {
     }
     
     func createDictionary(folderURL: URL, completion: @escaping ([String: [String]]) -> Void) {
-        var resultDictionary: [String: [String]] = [:]
-
+        print("in createDictionary")
+        
         extractTextFromFolder(folderURL) { textContents, filePaths in
+            var resultDictionary: [String: [String]] = [:]
             let group = DispatchGroup()
-
+            
             for (textContent, filePath) in zip(textContents, filePaths) {
                 group.enter()
-
                 self.extractKeywordsFromText(text: textContent) { keywords in
                     if let keywords = keywords {
                         resultDictionary[filePath] = keywords
@@ -72,7 +72,7 @@ class Extract {
                     group.leave()
                 }
             }
-
+            
             group.notify(queue: .main) {
                 completion(resultDictionary)
             }
