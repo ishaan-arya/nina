@@ -6,26 +6,18 @@ struct AnimatedSearchBar: View {
 
     var body: some View {
         ZStack {
-            
-        
-        
-            // The animated search bar itself
             HStack {
-                // This part will be hidden initially and will only show after the animation
                 if isExpanded {
                     TextField("Search...", text: $searchText)
-                                .foregroundColor(.gray) // Text color
-                               
-                               .textFieldStyle(PlainTextFieldStyle()) // Removes any default styling
+                                .foregroundColor(.gray)
+                               .textFieldStyle(PlainTextFieldStyle())
                                .padding(8)
-                               .frame(height: 40) // Set the height to match the search bar
+                               .frame(height: 40)
                                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
-                               .transition(.opacity) //
+                               .transition(.opacity)
                 }
                 
                 Spacer()
-                
-                // Magnifying glass button
                 Button(action: {
                     withAnimation(.spring()) {
                         self.isExpanded.toggle()
