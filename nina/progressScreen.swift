@@ -1,4 +1,11 @@
 import SwiftUI
+import AppKit
+
+func openFinder(at path: String) {
+    if let url = URL(string: path) {
+        NSWorkspace.shared.open(url)
+    }
+}
 
 struct ProgressScreen: View {
     @Binding var showProgressScreen: Bool
@@ -11,24 +18,37 @@ struct ProgressScreen: View {
         ZStack {
             Color.white.edgesIgnoringSafeArea(.all)
 
-            if showSparkle {
-                Text("✨")
-                    .font(.system(size: 72))
-                    .foregroundColor(.blue)
-                    .transition(.scale)
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            showProgressScreen = false
-                        }
+            VStack {
+                if showSparkle {
+                    Spacer()
+                    Text("✨")
+                        .font(.system(size: 72))
+                        .foregroundColor(.blue)
+                        .transition(.scale)
+                    Spacer()
+                    Button(action: {
+                        openFinder(at: "file:///Users/ishaanarya/Documents/")
+                    }) {
+                        Label("Open in Finder", systemImage: "arrow.right.circle.fill")
+                            .foregroundColor(.white)
+                            .padding(.vertical, 5) // Reduced vertical padding to decrease button height
                     }
-        
-            } else {
+                    .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.8), Color.blue.opacity(0.3)]), startPoint: .leading, endPoint: .trailing))
+                    .cornerRadius(10)
+                    .frame(height: 30) // Fixed height for the button
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10) // This overlay ensures no border is applied
+                            .stroke(Color.clear, lineWidth: 0)
+                    )
+                    Spacer()
+                } else {
                 VStack {
                     Spacer()
 
                     Text("📁")
                         .font(.system(size: 50))
                         .foregroundColor(.blue)
+                        .padding(.bottom, 20)
                         .offset(y: bounce ? -10 : 10)
                         .onAppear {
                             bounceAnimation()
@@ -54,6 +74,7 @@ struct ProgressScreen: View {
                 }
                 .padding(.vertical, 40)
                 .padding(.horizontal, 50)
+
                 .onAppear {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                         withAnimation {
@@ -62,12 +83,35 @@ struct ProgressScreen: View {
                     }
                 }
             }
-        }
-    }
+            }
+                        .padding(.horizontal, 50)
+                        .onAppear {
+                            if !showSparkle {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                    withAnimation {
+                                        showSparkle = true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .background(Color.white.edgesIgnoringSafeArea(.all))
+                }
 
     private func bounceAnimation() {
         withAnimation(Animation.easeInOut(duration: 0.8).repeatForever(autoreverses: true)) {
             bounce = true
+        }
+    }
+}
+
+struct HorizontalLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack {
+            configuration.icon
+                .imageScale(.large)
+                .foregroundColor(.white)
+            configuration.title
         }
     }
 }
