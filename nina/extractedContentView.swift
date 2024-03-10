@@ -11,6 +11,7 @@ struct ExtractedContentView: View {
     @State private var hovered: String? = nil  // Keep track of which button is being hovered
     
     @State private var showProgressScreen = false
+    @State private var textOffset: CGFloat = 600  // Start from below the visible area
     
     let drawerBackground = Color.white
     let shadowColor = Color.gray.opacity(0.5)
@@ -34,14 +35,12 @@ struct ExtractedContentView: View {
                 Text("NINA")
                     .font(.system(size: 75, weight: .bold, design: .rounded))
                     .foregroundColor(.blue)
-                    .padding(.top, 100)
-                    .scaleEffect(isNinaTextVisible ? 1 : 0.5)
-                    .opacity(isNinaTextVisible ? 1 : 0)
+                    .offset(y: textOffset)  // Use the offset for the animation
+                    .animation(.easeOut(duration: 2.0), value: textOffset)
                     .onAppear {
-                        withAnimation(.easeOut(duration: 1.5)) {
-                            self.isNinaTextVisible = true
-                        }
+                        textOffset = 62  // Adjust this value to the final position offset
                     }
+
                 AnimatedSearchBar(
                     isExpanded: $isSearchBarExpanded,
                     searchText: $searchText,
@@ -127,7 +126,7 @@ struct ExtractedContentView: View {
                 .padding([.top, .leading], 20), // This will position the button to the top left
                 alignment: .topLeading // Changed from .top to .topLeading
             )
-        }
+         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.white.opacity(0.95).edgesIgnoringSafeArea(.all))
         .sheet(isPresented: $showProgressScreen) {
