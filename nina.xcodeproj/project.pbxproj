@@ -18,7 +18,8 @@
 		DC4870412B9D16040009DCDC /* customSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870402B9D16040009DCDC /* customSearchBar.swift */; };
 		DC4870432B9D21440009DCDC /* animatedSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870422B9D21440009DCDC /* animatedSearchBar.swift */; };
 		DC4870452B9D324E0009DCDC /* extractedContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870442B9D324E0009DCDC /* extractedContentView.swift */; };
-		DC48704B2B9D351A0009DCDC /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = DC48704A2B9D351A0009DCDC /* OpenAI */; };
+		DC4870532B9D5A440009DCDC /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = DC4870522B9D5A440009DCDC /* OpenAI */; };
+		DC4870552B9D65530009DCDC /* progressScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4870542B9D65530009DCDC /* progressScreen.swift */; };
 		FAB0D4FD2B9D2CDA00BC7635 /* openAi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0D4FC2B9D2CDA00BC7635 /* openAi.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		DC4870402B9D16040009DCDC /* customSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customSearchBar.swift; sourceTree = "<group>"; };
 		DC4870422B9D21440009DCDC /* animatedSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animatedSearchBar.swift; sourceTree = "<group>"; };
 		DC4870442B9D324E0009DCDC /* extractedContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extractedContentView.swift; sourceTree = "<group>"; };
+		DC4870542B9D65530009DCDC /* progressScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progressScreen.swift; sourceTree = "<group>"; };
 		FAB0D4FC2B9D2CDA00BC7635 /* openAi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openAi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC48704B2B9D351A0009DCDC /* OpenAI in Frameworks */,
+				DC4870532B9D5A440009DCDC /* OpenAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +123,7 @@
 				DC4870172B9D146C0009DCDC /* ContentView.swift */,
 				DC4870442B9D324E0009DCDC /* extractedContentView.swift */,
 				DC4870422B9D21440009DCDC /* animatedSearchBar.swift */,
+				DC4870542B9D65530009DCDC /* progressScreen.swift */,
 				DC4870192B9D146D0009DCDC /* Assets.xcassets */,
 				DC48701E2B9D146D0009DCDC /* nina.entitlements */,
 				DC48701B2B9D146D0009DCDC /* Preview Content */,
@@ -171,7 +174,7 @@
 			);
 			name = nina;
 			packageProductDependencies = (
-				DC48704A2B9D351A0009DCDC /* OpenAI */,
+				DC4870522B9D5A440009DCDC /* OpenAI */,
 			);
 			productName = nina;
 			productReference = DC4870122B9D146C0009DCDC /* nina.app */;
@@ -246,7 +249,7 @@
 			);
 			mainGroup = DC4870092B9D146C0009DCDC;
 			packageReferences = (
-				DC4870492B9D351A0009DCDC /* XCRemoteSwiftPackageReference "OpenAI" */,
+				DC4870512B9D5A440009DCDC /* XCRemoteSwiftPackageReference "OpenAI" */,
 			);
 			productRefGroup = DC4870132B9D146C0009DCDC /* Products */;
 			projectDirPath = "";
@@ -294,6 +297,7 @@
 				DC4870182B9D146C0009DCDC /* ContentView.swift in Sources */,
 				DC4870412B9D16040009DCDC /* customSearchBar.swift in Sources */,
 				FAB0D4FD2B9D2CDA00BC7635 /* openAi.swift in Sources */,
+				DC4870552B9D65530009DCDC /* progressScreen.swift in Sources */,
 				DC4870162B9D146C0009DCDC /* ninaApp.swift in Sources */,
 				2CA275652B9D1A2E00F24674 /* Extract.swift in Sources */,
 				DC4870452B9D324E0009DCDC /* extractedContentView.swift in Sources */,
@@ -611,7 +615,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DC4870492B9D351A0009DCDC /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+		DC4870512B9D5A440009DCDC /* XCRemoteSwiftPackageReference "OpenAI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
 			requirement = {
@@ -622,9 +626,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DC48704A2B9D351A0009DCDC /* OpenAI */ = {
+		DC4870522B9D5A440009DCDC /* OpenAI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DC4870492B9D351A0009DCDC /* XCRemoteSwiftPackageReference "OpenAI" */;
+			package = DC4870512B9D5A440009DCDC /* XCRemoteSwiftPackageReference "OpenAI" */;
 			productName = OpenAI;
 		};
 /* End XCSwiftPackageProductDependency section */

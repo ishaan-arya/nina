@@ -2,19 +2,23 @@ import SwiftUI
 
 struct AnimatedSearchBar: View {
     @Binding var isExpanded: Bool
-    @Binding var searchText: String
+      @Binding var searchText: String
+    var onCommit: () -> Void = {}
 
     var body: some View {
         ZStack {
             HStack {
                 if isExpanded {
                     TextField("Search...", text: $searchText)
-                                .foregroundColor(.gray)
-                               .textFieldStyle(PlainTextFieldStyle())
-                               .padding(8)
-                               .frame(height: 40)
-                               .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
-                               .transition(.opacity)
+                                           .foregroundColor(.gray)
+                                           .textFieldStyle(PlainTextFieldStyle())
+                                           .padding(8)
+                                           .frame(height: 40)
+                                           .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
+                                           .transition(.opacity)
+                                           .onSubmit {
+                                               onCommit() // Invoke the onCommit closure when the user presses Enter
+                                           }
                 }
 
                 Spacer()
