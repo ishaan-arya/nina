@@ -2,75 +2,63 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selectedFolder: URL?
-    @State private var isShowingExtractedContent = false
 
     var body: some View {
-        ZStack {
-            Color.white.opacity(0.95).edgesIgnoringSafeArea(.all)
-
-            if isShowingExtractedContent {
-                ExtractedContentView()
-            } else {
-                VStack {
-                    if let selectedFolder = selectedFolder {
-                        Text("Selected Folder: \(selectedFolder.path)")
-                            .foregroundColor(.black)
-                            .padding()
-                    } else {
-                        Text("Drag and drop a folder here or select one using the button")
-                            .font(.title)
-                            .foregroundColor(.black)
-                            .padding()
-                    }
-                    
+        VStack {
+            Text("Drag and drop a folder here or select one using the button")
+                .font(.title)
+                .foregroundColor(.black)
+                .multilineTextAlignment(.center)
+                .padding()
+            
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.gray, lineWidth: 2)
+                .overlay(
                     DropView(selectedFolder: $selectedFolder)
-                        .frame(width: 200, height: 150)
-                        .border(Color.gray, width: 2)
-                        .cornerRadius(10)
-                        .padding()
-                    
-                    Button("📁 Select Folder") {
-                        let openPanel = NSOpenPanel()
-                        openPanel.allowsMultipleSelection = false
-                        openPanel.canChooseDirectories = true
-                        openPanel.canChooseFiles = false
-                        
-                        if openPanel.runModal() == .OK {
-                            selectedFolder = openPanel.url
-                        }
-                    }
-                    .padding()
-                    .buttonStyle(PlainButtonStyle())
-                    .foregroundColor(.black)
-                    
-                    Button("Extract Text") {
-                        if let _ = selectedFolder {
-                            // Assume extraction is done here, and we want to show the result
-                            isShowingExtractedContent = true
-                        }
-                    }
-                    .padding()
-                    .buttonStyle(PlainButtonStyle())
-                    .foregroundColor(.black)
-                    
-                    Spacer()
+                )
+                .frame(height: 200)
+                .padding()
+            
+            Button(action: {
+                let openPanel = NSOpenPanel()
+                openPanel.allowsMultipleSelection = false
+                openPanel.canChooseDirectories = true
+                openPanel.canChooseFiles = false
+                
+                if openPanel.runModal() == .OK {
+                    selectedFolder = openPanel.url
                 }
+            }) {
+                HStack {
+                    Image(systemName: "folder")
+                    Text("Select Folder")
+                }
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
             }
-        }
-        .padding()
-        Button("Extract Text") {
-            if let selectedFolder = selectedFolder {
-                let extractor = Extract()
-                        
-                extractor.createDictionary(folderURL: selectedFolder) { keywordsByFilePath in
-                    DispatchQueue.main.async {
-                        for (filePath, keywords) in keywordsByFilePath {
-                            print("File: \(filePath)")
-                            print("Keywords: \(keywords.joined(separator: ", "))")
+            .buttonStyle(PlainButtonStyle())
+            
+            Button("Extract Text") {
+                if let selectedFolder = selectedFolder {
+                    let extractor = Extract()
+                            
+                    extractor.createDictionary(folderURL: selectedFolder) { keywordsByFilePath in
+                        DispatchQueue.main.async {
+                            for (filePath, keywords) in keywordsByFilePath {
+                                print("File: \(filePath)")
+                                print("Keywords: \(keywords.joined(separator: ", "))")
+                            }
                         }
                     }
                 }
             }
+            .padding()
+            .background(Color.green)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            .buttonStyle(PlainButtonStyle())
         }
         .padding()
     }
@@ -90,13 +78,6 @@ struct DropView: NSViewRepresentable {
     
     func updateNSView(_ nsView: NSView, context: Context) {
         nsView.subviews.forEach { $0.removeFromSuperview() }
-        
-        let dropIndicator = NSImageView(image: NSImage(named: NSImage.folderName)!)
-        dropIndicator.frame = NSRect(x: (nsView.bounds.width - dropIndicator.bounds.width) / 2,
-                                     y: (nsView.bounds.height - dropIndicator.bounds.height) / 2,
-                                     width: dropIndicator.bounds.width,
-                                     height: dropIndicator.bounds.height)
-        nsView.addSubview(dropIndicator)
     }
 }
 
