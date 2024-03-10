@@ -1,5 +1,8 @@
 {
+
   "originHash" : "e87ffdbd9c24326a10a4b00e0dd89fbaee0a4ec0da3a6f816c7fdbe1d300d6d1",
+
+
   "pins" : [
     {
       "identity" : "openai",
@@ -9,6 +12,7 @@
         "revision" : "35afc9a6ee127b8f22a85a31aec2036a987478af",
         "version" : "0.2.6"
       }
+
     },
     {
       "identity" : "openaiswift",

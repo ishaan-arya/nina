@@ -76,6 +76,22 @@ struct ContentView: View {
                 }
             }
         }
+        .padding()
+        Button("Extract Text") {
+            if let selectedFolder = selectedFolder {
+                let extractor = Extract()
+                        
+                extractor.createDictionary(folderURL: selectedFolder) { keywordsByFilePath in
+                    DispatchQueue.main.async {
+                        for (filePath, keywords) in keywordsByFilePath {
+                            print("File: \(filePath)")
+                            print("Keywords: \(keywords.joined(separator: ", "))")
+                        }
+                    }
+                }
+            }
+        }
+        .padding()
     }
 }
 
