@@ -32,6 +32,75 @@ struct ContentView: View {
                 HStack {
                     Image(systemName: "folder")
                     Text("Select Folder")
+        ZStack {
+            Color.white.opacity(0.95).edgesIgnoringSafeArea(.all)
+
+            if isShowingExtractedContent {
+                ExtractedContentView(isShowing: $isShowingExtractedContent)
+            } else {
+                VStack {
+                    Spacer()
+                    if let selectedFolder = selectedFolder {
+                        Text("Selected Folder: \(selectedFolder.path)")
+                            .foregroundColor(.black)
+                            .padding()
+                    } else {
+                        Text("Drag and drop a folder here or select one using the button")
+                            .font(.title)
+                            .foregroundColor(.black)
+                            .padding()
+                    }
+                    
+                    DropView(selectedFolder: $selectedFolder)
+                        .frame(width: 200, height: 150)
+                          .background(Color.white)
+                          .cornerRadius(10)
+                          .shadow(color: .blue, radius: 2, x: 0, y: 0)
+                          .overlay(
+                              RoundedRectangle(cornerRadius: 10)
+                                  .stroke(Color.blue, lineWidth: 2)
+                          )
+                          .padding()
+                    
+                    Button("📁 Select Folder") {
+                        let openPanel = NSOpenPanel()
+                        openPanel.allowsMultipleSelection = false
+                        openPanel.canChooseDirectories = true
+                        openPanel.canChooseFiles = false
+
+                        if openPanel.runModal() == .OK {
+                            selectedFolder = openPanel.url
+                        }
+                    }
+                    .padding()
+                    .buttonStyle(PlainButtonStyle())
+                    .foregroundColor(.black)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.blue, lineWidth: 2)
+                    )
+                    .padding()
+
+                    Button("Extract Text") {
+                        if let _ = selectedFolder {
+                            // Assume extraction is done here, and we want to show the result
+                            isShowingExtractedContent = true
+                        }
+                    }
+                    .padding()
+                    .buttonStyle(PlainButtonStyle())
+                    .foregroundColor(.white) // Text color of the button
+                    .background(Color.gray) // Background color of the button
+                    .cornerRadius(10) // Rounded corners of the button
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray, lineWidth: 2) // Blue border for the button
+                    )
+                    .padding()
+
+
+                    Spacer()
+
                 }
                 .padding()
                 .background(Color.blue)
@@ -78,6 +147,12 @@ struct DropView: NSViewRepresentable {
     
     func updateNSView(_ nsView: NSView, context: Context) {
         nsView.subviews.forEach { $0.removeFromSuperview() }
+        
+        let uploadIcon = NSImageView(image: NSImage(systemSymbolName: "arrow.up.doc", accessibilityDescription: "Upload") ?? NSImage())
+        uploadIcon.contentTintColor = .gray // Set the color of the upload icon
+        uploadIcon.translatesAutoresizingMaskIntoConstraints = false
+        nsView.addSubview(uploadIcon)
+
     }
 }
 
