@@ -1,11 +1,54 @@
 import SwiftUI
 
+
 struct ExtractedContentView: View {
+     @State private var keywordsByFilePath: [String: [String]] = [:]
+     private func processSearchText() async {
+        let userPrompt = searchText
+        print("User prompt: \(userPrompt)")
+
+        let userKeywords = await getUserKeywords(userPrompt: userPrompt)
+        print("User keywords: \(userKeywords)")
+
+        let userAction = await getUserAction(userPrompt: userPrompt)
+        print("User action: \(userAction)")
+
+        var completeDictString = ""
+        for (filePath, keywords) in keywordsByFilePath {
+            print("File: \(filePath)")
+            let fileKeywords = "File: \(filePath) Keywords: \(keywords.joined(separator: ", "))"
+            completeDictString += fileKeywords
+            /*let filesToModify = await getFilesToModify(userKeywords: userKeywords, fileKeywords: fileKeywords)*/
+
+        }
+        let script = await generateScript(userActions: userPrompt, files: completeDictString, path: selectedFolder?.path ?? "")
+        createShellScript(with: script, at: selectedFolder!.path)
+        executeShellScript(at: selectedFolder!.path + "/script.sh")
+        deleteFile(at: selectedFolder!.path + "/script.sh")
+        
+    }
+
+    private func createDictionary() {
+        if let selectedFolder = selectedFolder {
+            selectedFolder.startAccessingSecurityScopedResource()
+            print("Selected folder: \(selectedFolder.path)")
+
+            let extractor = Extract()
+            extractor.createDictionary(folderURL: selectedFolder) { keywordsByFilePath in
+                self.keywordsByFilePath = keywordsByFilePath
+            }
+
+            selectedFolder.stopAccessingSecurityScopedResource()
+        } else {
+            print("No selected folder")
+        }
+    }
     @Binding var isShowing: Bool
     @State private var isSearchBarExpanded: Bool = false
     @State private var searchText: String = ""
     @State private var isNinaTextVisible: Bool = false
     @State private var isExpanded = false
+     @State private var isLoading = false
     @State private var showProgressScreen = false
     @Binding var selectedFolder: URL?
     @State private var hovered: String? = nil  // Keep track of which button is being hovered
@@ -23,9 +66,9 @@ struct ExtractedContentView: View {
     ]
     let boxes = [
         "Make a folder and put...",
-        "What's the best practice for...",
-        "I have a bug in SwiftData, can you...",
-        "Can you explain this Xcode feature..."
+        "Create a new file called...",
+        "Move files related to...",
+        "Copy the contents of..."
     ]
 
     var body: some View {
@@ -36,12 +79,13 @@ struct ExtractedContentView: View {
                     .font(.system(size: 75, weight: .bold, design: .rounded))
                     .foregroundColor(.blue)
                     .offset(y: textOffset)  // Use the offset for the animation
-                    .animation(.easeOut(duration: 2.0), value: textOffset)
+                    .animation(.easeOut(duration: 1.0), value: textOffset)
                     .onAppear {
-                        textOffset = 62  // Adjust this value to the final position offset
+                        textOffset = 62
+
                         createDictionary()
                     }
-                    .padding(.top, 20)
+                    .padding(.top, 5)
                     .zIndex(1)
 
                 Spacer()
@@ -49,13 +93,16 @@ struct ExtractedContentView: View {
 
             // Drawer for the search bar and buttons
             VStack(spacing: 20) {
-                AnimatedSearchBar(isExpanded: $isSearchBarExpanded, searchText: $searchText, onCommit: {
-                    print(searchText) //TODO: call the right function
+                 AnimatedSearchBar(isExpanded: $isSearchBarExpanded, searchText: $searchText, onCommit: {
+                    isLoading = true // Start loading and show the progress screen
+                    showProgressScreen = true
                     Task {
                         await processSearchText()
+                        // After the search process is done, update the UI on the main thread
+                        DispatchQueue.main.async {
+                            isLoading = false // Set loading to false to trigger the sparkle screen
+                        }
                     }
-                    showProgressScreen = true
-
                 })
                 .padding()
 
@@ -92,7 +139,7 @@ struct ExtractedContentView: View {
             .background(drawerBackground)
             .cornerRadius(30)
             .shadow(color: shadowColor, radius: 30, x: 0, y: -20)
-            .offset(y: 150)
+            .offset(y: 200)
             .animation(.interactiveSpring(response: 0.6, dampingFraction: 0.8, blendDuration: 0.8), value: isSearchBarExpanded)
 
             .overlay(
@@ -104,59 +151,30 @@ struct ExtractedContentView: View {
                         .padding()
                         .clipShape(Rectangle())
                         .cornerRadius(10)
-                        .shadow(color: shadowColor, radius: 30, x: 0, y: -20)
                 }
+                .shadow(color: shadowColor, radius: 30, x: 0, y: -20)
                 .padding([.top, .leading], 20), // This will position the button to the top left
                 alignment: .topLeading // Changed from .top to .topLeading
+
             )
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.white.opacity(0.95).edgesIgnoringSafeArea(.all))
-        .sheet(isPresented: $showProgressScreen) {
-            // Present the ProgressScreen as a sheet when showProgressScreen is true
-            ProgressScreen(showProgressScreen: $showProgressScreen)
-        }
-    }
-
-    private func createDictionary() {
-        if let selectedFolder = selectedFolder {
-            selectedFolder.startAccessingSecurityScopedResource()
-            print("Selected folder: \(selectedFolder.path)")
-
-            let extractor = Extract()
-            extractor.createDictionary(folderURL: selectedFolder) { keywordsByFilePath in
-                self.keywordsByFilePath = keywordsByFilePath
-            }
-
-            selectedFolder.stopAccessingSecurityScopedResource()
-        } else {
-            print("No selected folder")
-        }
-    }
-
-    private func processSearchText() async {
-        let userPrompt = searchText
-        print("User prompt: \(userPrompt)")
-
-        let userKeywords = await getUserKeywords(userPrompt: userPrompt)
-        print("User keywords: \(userKeywords)")
-
-        let userAction = await getUserAction(userPrompt: userPrompt)
-        print("User action: \(userAction)")
-
-        var completeDictString = ""
-        for (filePath, keywords) in keywordsByFilePath {
-            print("File: \(filePath)")
-            let fileKeywords = "File: \(filePath) Keywords: \(keywords.joined(separator: ", "))"
-            completeDictString += fileKeywords
-            /*let filesToModify = await getFilesToModify(userKeywords: userKeywords, fileKeywords: fileKeywords)*/
-
-        }
-        let script = await generateScript(userActions: userPrompt, files: completeDictString, path: selectedFolder?.path ?? "")
-        createShellScript(with: script, at: selectedFolder!.path)
-executeShellScript(at: selectedFolder!.path + "/script.sh")
+       .sheet(isPresented: $showProgressScreen) {
+    if let path = selectedFolder?.path {
+        let folderURL = "file://\(path)"
+        ProgressScreen(showProgressScreen: $showProgressScreen, isLoading: $isLoading, folderPath: folderURL)
+    } else {
+        ProgressScreen(showProgressScreen: $showProgressScreen, isLoading: $isLoading, folderPath: "")
     }
 }
+    }
+
+        
+    }
+
+
+
 
 // Implement AnimatedSearchBar and other subviews as necessary
 

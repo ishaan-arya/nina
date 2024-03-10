@@ -6,6 +6,20 @@
 //
 
 import Foundation
+
+func deleteFile(at path: String) {
+    let fileManager = FileManager.default
+    
+    do {
+        try fileManager.removeItem(atPath: path)
+        print("File deleted successfully at path: \(path)")
+    } catch {
+        print("Error deleting file at path: \(path)")
+        print("Error description: \(error.localizedDescription)")
+    }
+}
+
+
 func createShellScript(with instructions: String, at path: String) -> String? {
 
     // Create a URL for the script file or directory

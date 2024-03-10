@@ -8,8 +8,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             // Background gradient
-            LinearGradient(gradient: Gradient(colors: [Color.white, Color.blue.opacity(0.2)]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                .edgesIgnoringSafeArea(.all)
+            Color.white.opacity(0.95).edgesIgnoringSafeArea(.all)
 
             if isShowingExtractedContent {
                 ExtractedContentView(isShowing: $isShowingExtractedContent, selectedFolder: $selectedFolder)
@@ -25,25 +24,26 @@ struct ContentView: View {
                         .padding(.horizontal)
 
                     DropView(selectedFolder: $selectedFolder)
-                        .frame(width: 250, height: 200)
-                        .background(
-                            RoundedRectangle(cornerRadius: 20)
-                                .strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [10]))
-                                .foregroundColor(Color.gray.opacity(0.5))
-                        )
-                        .overlay(
-                            FolderIcon()
-                        )
-                        .padding()
+                           .frame(width: 250, height: 200)
+                           .background(
+                               RoundedRectangle(cornerRadius: 20)
+                                   .strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [10]))
+                                   .foregroundColor(Color.gray.opacity(0.5))
+                           )
+                           .overlay(
+                               FolderIcon()
+                           )
+                           .padding()
 
                     Button(action: {
                         selectFolder()
                     }) {
                         Label("Browse files", systemImage: "folder")
+                            .font(.system(size: 15, weight: .bold, design: .rounded))
                             .foregroundColor(.white)
                             .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
+                            .frame(width: 250, height: 50)
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.8), Color.blue.opacity(0.3)]), startPoint: .leading, endPoint: .trailing))
                             .cornerRadius(10)
                     }
                     .buttonStyle(PlainButtonStyle())
@@ -76,7 +76,7 @@ struct FolderIcon: View {
             .scaledToFit()
             .frame(width: 64, height: 48)
             .foregroundColor(.blue)
-            .padding(.bottom, 100)
+            // Remove padding from here
     }
 }
 
