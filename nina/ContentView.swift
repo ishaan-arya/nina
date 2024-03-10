@@ -1,49 +1,61 @@
 import SwiftUI
 
+
 struct ContentView: View {
     @State private var selectedFolder: URL?
     @State private var isShowingExtractedContent = false
+
     var body: some View {
         ZStack {
-            Color.white.opacity(0.95).edgesIgnoringSafeArea(.all)
+            // Background gradient
+            LinearGradient(gradient: Gradient(colors: [Color.white, Color.blue.opacity(0.2)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                .edgesIgnoringSafeArea(.all)
+
             if isShowingExtractedContent {
                 ExtractedContentView(isShowing: $isShowingExtractedContent)
             } else {
-                VStack {
+                VStack(spacing: 20) {
                     Spacer()
 
                     Text("Drag and drop a folder here or select one using the button")
                         .font(.title)
+                        .fontWeight(.medium)
                         .foregroundColor(.black)
+                        .multilineTextAlignment(.center)
                         .padding(.horizontal)
 
                     DropView(selectedFolder: $selectedFolder)
-                        .frame(width: 200, height: 150)
-                        .border(Color.gray, width: 2)
-                        .cornerRadius(10)
+                        .frame(width: 250, height: 200)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [10]))
+                                .foregroundColor(Color.gray.opacity(0.5))
+                        )
+                        .overlay(
+                            FolderIcon()
+                        )
                         .padding()
 
                     Button(action: {
                         selectFolder()
                     }) {
-                        HStack {
-                            Image(systemName: "folder")
-                            Text("Select Folder")
-                        }
-                        .frame(width: 200, height: 50)
-                        .background(Color.gray)
-                        .foregroundColor(.black)
-                        .cornerRadius(10)
+                        Label("Browse files", systemImage: "folder")
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .cornerRadius(10)
                     }
                     .buttonStyle(PlainButtonStyle())
-                    .padding()
+                    .padding(.horizontal, 40)
 
                     Spacer()
                 }
+                .padding(.top, 20)
             }
         }
     }
-    
+
     private func selectFolder() {
         let openPanel = NSOpenPanel()
         openPanel.allowsMultipleSelection = false
@@ -54,6 +66,17 @@ struct ContentView: View {
             isShowingExtractedContent = true
             selectedFolder = openPanel.url
         }
+    }
+}
+
+struct FolderIcon: View {
+    var body: some View {
+        Image(systemName: "folder.fill")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 64, height: 48)
+            .foregroundColor(.blue)
+            .padding(.bottom, 100)
     }
 }
 

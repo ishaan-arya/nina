@@ -9,8 +9,8 @@ struct AnimatedSearchBar: View {
         ZStack {
             HStack {
                 if isExpanded {
-                    TextField("Search...", text: $searchText)
-                                           .foregroundColor(.gray)
+                    TextField("Search...", text: $searchText, onCommit: onCommit)
+                                           .foregroundColor(.black)
                                            .textFieldStyle(PlainTextFieldStyle())
                                            .padding(8)
                                            .frame(height: 40)
