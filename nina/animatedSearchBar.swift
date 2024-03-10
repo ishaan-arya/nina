@@ -1,9 +1,8 @@
 import SwiftUI
 
 struct AnimatedSearchBar: View {
-    @State private var isExpanded: Bool = false
-    @State private var searchText: String = ""
-
+    @Binding var isExpanded: Bool
+    @Binding var searchText: String
 
     var body: some View {
         ZStack {
@@ -17,7 +16,7 @@ struct AnimatedSearchBar: View {
                                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
                                .transition(.opacity)
                 }
-                
+
                 Spacer()
                 Button(action: {
                     withAnimation(.spring()) {
@@ -45,6 +44,6 @@ struct AnimatedSearchBar: View {
 
 struct AnimatedSearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        AnimatedSearchBar()
+        AnimatedSearchBar(isExpanded: .constant(false), searchText: .constant(""))
     }
 }

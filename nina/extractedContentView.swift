@@ -2,7 +2,8 @@ import SwiftUI
 
 struct ExtractedContentView: View {
     @Binding var isShowing: Bool
-    
+  @State private var isSearchBarExpanded: Bool = false
+  @State private var searchText: String = ""
     // Define the data for the grid
     let gridItems = [
         GridItem(.flexible()),
@@ -26,22 +27,29 @@ struct ExtractedContentView: View {
                     .foregroundColor(.blue)
                     .padding(.top, 100)
 
-                AnimatedSearchBar()
-                    .padding(.horizontal, 20)
-                    .padding(.top, 30)
+                AnimatedSearchBar(isExpanded: $isSearchBarExpanded, searchText: $searchText)
+                                 .padding(.horizontal, 20)
+                                 .padding(.top, 30)
 
-                // Add the LazyVGrid here
                 LazyVGrid(columns: gridItems, spacing: 20) {
                     ForEach(boxes, id: \.self) { box in
-                        Text(box)
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
-                            .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.5), Color.blue.opacity(0.3)]), startPoint: .top, endPoint: .bottom))
-                            .cornerRadius(10)
-                            .padding(.horizontal, 20)
-                            .foregroundColor(.white)
+                        Button(action: {
+                            withAnimation(.spring()) {
+                                self.searchText = box
+                                self.isSearchBarExpanded = true
+                            }
+                        }) {
+                            Text(box)
+                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
+                                .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.5), Color.blue.opacity(0.3)]), startPoint: .top, endPoint: .bottom))
+                                .cornerRadius(10)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .padding(.horizontal, 16)
                     }
                 }
                 .padding(.top, 20)
+
 
                 Spacer()
             }

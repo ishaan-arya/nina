@@ -3,65 +3,59 @@ import SwiftUI
 struct ContentView: View {
     @State private var selectedFolder: URL?
     @State private var isShowingExtractedContent = false
-
     var body: some View {
         ZStack {
             Color.white.opacity(0.95).edgesIgnoringSafeArea(.all)
-
             if isShowingExtractedContent {
                 ExtractedContentView(isShowing: $isShowingExtractedContent)
             } else {
                 VStack {
-                    if let selectedFolder = selectedFolder {
-                        Text("Selected Folder: \(selectedFolder.path)")
-                            .foregroundColor(.black)
-                            .padding()
-                    } else {
-                        Text("Drag and drop a folder here or select one using the button")
-                            .font(.title)
-                            .foregroundColor(.black)
-                            .padding()
-                    }
-                    
+                    Spacer()
+
+                    Text("Drag and drop a folder here or select one using the button")
+                        .font(.title)
+                        .foregroundColor(.black)
+                        .padding(.horizontal)
+
                     DropView(selectedFolder: $selectedFolder)
                         .frame(width: 200, height: 150)
                         .border(Color.gray, width: 2)
                         .cornerRadius(10)
                         .padding()
-                    
-                    Button("📁 Select Folder") {
-                        let openPanel = NSOpenPanel()
-                        openPanel.allowsMultipleSelection = false
-                        openPanel.canChooseDirectories = true
-                        openPanel.canChooseFiles = false
-                        
-                        if openPanel.runModal() == .OK {
-                            selectedFolder = openPanel.url
+
+                    Button(action: {
+                        selectFolder()
+                    }) {
+                        HStack {
+                            Image(systemName: "folder")
+                            Text("Select Folder")
                         }
+                        .frame(width: 200, height: 50)
+                        .background(Color.gray)
+                        .foregroundColor(.black)
+                        .cornerRadius(10)
                     }
-                    .padding()
                     .buttonStyle(PlainButtonStyle())
-                    .foregroundColor(.black)
-                    
-                    Button("Extract Text") {
-                        if let _ = selectedFolder {
-                            // Assume extraction is done here, and we want to show the result
-                            isShowingExtractedContent = true
-                        }
-                    }
                     .padding()
-                    .buttonStyle(PlainButtonStyle())
-                    .foregroundColor(.black)
-                    
+
                     Spacer()
                 }
             }
         }
-        .padding()
-      
+    }
+    
+    private func selectFolder() {
+        let openPanel = NSOpenPanel()
+        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = true
+        openPanel.canChooseFiles = false
+        
+        if openPanel.runModal() == .OK {
+            isShowingExtractedContent = true
+            selectedFolder = openPanel.url
+        }
     }
 }
-
 
 struct DropView: NSViewRepresentable {
     @Binding var selectedFolder: URL?
