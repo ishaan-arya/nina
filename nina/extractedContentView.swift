@@ -52,6 +52,7 @@ struct ExtractedContentView: View {
     @State private var showProgressScreen = false
     @Binding var selectedFolder: URL?
     @State private var hovered: String? = nil  // Keep track of which button is being hovered
+    @State private var keywordsByFilePath: [String: [String]] = [:]
 
     @State private var textOffset: CGFloat = 600  // Start from below the visible area
 
@@ -81,6 +82,7 @@ struct ExtractedContentView: View {
                     .animation(.easeOut(duration: 1.0), value: textOffset)
                     .onAppear {
                         textOffset = 62
+
                         createDictionary()
                     }
                     .padding(.top, 5)
